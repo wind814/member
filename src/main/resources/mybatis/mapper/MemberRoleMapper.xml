@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wind.member.dao.MemberRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.wind.member.entity.MemberRole" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from member_role
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wind.member.entity.MemberRole" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into member_role (`name`)
+    values (#{name,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wind.member.entity.MemberRole" >
+    update member_role
+    set `name` = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, `name`
+    from member_role
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, `name`
+    from member_role
+  </select>
+
+  <select id="findByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select mr.id, mr.`name`
+    from member_role mr left join member_role_user mru on mr.id = mru.role_id
+    where mru.user_id = #{id,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>

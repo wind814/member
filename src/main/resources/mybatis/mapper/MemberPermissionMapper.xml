@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wind.member.dao.MemberPermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.wind.member.entity.MemberPermission" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="descripion" property="descripion" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="is_blank" property="isBlank" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="perms" property="perms" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="visible" property="visible" jdbcType="INTEGER" />
+    <result column="childcount" jdbcType="INTEGER" property="childCount"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from member_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wind.member.entity.MemberPermission" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into member_permission (`name`, descripion, url, 
+      is_blank, pid, perms, 
+      `type`, icon, order_num, 
+      visible)
+    values (#{name,jdbcType=VARCHAR}, #{descripion,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{isBlank,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, #{perms,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, 
+      #{visible,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wind.member.entity.MemberPermission" >
+    update member_permission
+    set `name` = #{name,jdbcType=VARCHAR},
+      descripion = #{descripion,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      is_blank = #{isBlank,jdbcType=INTEGER},
+      pid = #{pid,jdbcType=VARCHAR},
+      perms = #{perms,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      visible = #{visible,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, `name`, descripion, url, is_blank, pid, perms, `type`, icon, order_num, 
+    visible
+    from member_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, `name`, descripion, url, is_blank, pid, perms, `type`, icon, order_num, 
+    visible
+    from member_permission
+  </select>
+
+  <select id="findByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select mp.id, mp.`name`, mp.descripion, mp.url, mp.is_blank, mp.pid, mp.perms, mp.`type`, mp.icon, mp.order_num,
+    mp.visible
+    from member_permission mp left join member_permission_role mpr on mp.id = mpr.permission_id
+    where mpr.role_id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findByOrderNumAsc" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select id, role_id, permission_id
+    from member_permission
+    order by order_num asc
+  </select>
+
+  <select id="findByAdminUserId" parameterType="String" resultMap="BaseResultMap">
+        select distinct p.*,(select count(1) from member_permission where pid=p.id) childcount
+        from member_permission_role spr,member_role_user sru,member_permission p
+        where 	spr.role_id = sru.role_id AND spr.permission_id = p.id AND sru.user_id=#{userId}
+		GROUP BY p.id
+		ORDER BY order_num  is null  ASC,order_num  ASC
+ </select>
+
+</mapper>
