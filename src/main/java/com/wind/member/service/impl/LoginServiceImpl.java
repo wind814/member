@@ -3,9 +3,7 @@ package com.wind.member.service.impl;
 import com.wind.member.BootstrapTree;
 import com.wind.member.dao.MemberPermissionMapper;
 import com.wind.member.dao.MemberPermissionRoleMapper;
-import com.wind.member.dao.MovieStarMapper;
 import com.wind.member.entity.MemberPermission;
-import com.wind.member.entity.MovieStar;
 import com.wind.member.service.LoginService;
 import com.wind.member.shiro.util.StringUtils;
 import org.slf4j.Logger;
@@ -22,46 +20,7 @@ public class LoginServiceImpl implements LoginService {
     private static final Logger windMovieSingle = LoggerFactory.getLogger("wind_movie_single");
 
     @Autowired
-    private MovieStarMapper movieStarMapper;
-
-    @Autowired
-    private MemberPermissionRoleMapper memberPermissionRoleMapper;
-
-    @Autowired
     private MemberPermissionMapper memberPermissionMapper;
-
-    /**
-     * 3层tree,1层没用，2层显示名称，3层名称关联url
-     * @return BootstrapTree
-     */
-    @Override
-    public BootstrapTree getBootstrapTree() {
-
-        BootstrapTree tree  = new BootstrapTree("电影","fa fa-id-badge","1","1"
-                ,"#",0,null,"",0);
-
-        List<MovieStar> list = movieStarMapper.selectAll();
-
-        List<BootstrapTree> treeList = new ArrayList<>();
-
-        if(list!=null && list.size()>0){
-            for(MovieStar star : list){
-
-                List<BootstrapTree> treeListTest = new ArrayList<BootstrapTree>();
-                BootstrapTree treeTest  = new BootstrapTree(star.getName(),"fa fa-id-badge","1"
-                        ,Long.toString(star.getId()),"/v1/movie/movieList/view/"+star.getId(),0,null,"",0);
-
-                treeListTest.add(treeTest);
-
-                BootstrapTree treeNode = new BootstrapTree(star.getName(),"fa fa-id-badge","1"
-                        ,Long.toString(star.getId()),"/v1/movie/movieList/view",0,treeListTest,"",0);
-
-                treeList.add(treeNode);
-            }
-        }
-        tree.setNodes(treeList);
-        return tree;
-    }
 
     @Override
     public BootstrapTree getBootstrapTreePerm(String userid) {

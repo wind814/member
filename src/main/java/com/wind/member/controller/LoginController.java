@@ -3,7 +3,6 @@ package com.wind.member.controller;
 import com.wind.member.BootstrapTree;
 import com.wind.member.domain.AjaxResult;
 import com.wind.member.service.LoginService;
-import com.wind.member.service.MovieStarService;
 import com.wind.member.shiro.util.ShiroUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -23,8 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/v1/member/login/")
@@ -33,9 +32,6 @@ public class LoginController {
         private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
         private static final Logger wind0415Single = LoggerFactory.getLogger("wind_0415_single");
-
-        @Autowired
-        private MovieStarService movieStarService;
 
         @Autowired
         private LoginService loginService;
@@ -116,9 +112,19 @@ public class LoginController {
             return AjaxResult.success();
         }
 
+//        @ApiOperation(value="退出登陆",notes="退出登陆")
+        @GetMapping("/LoginOut")
+        public String LoginOut(HttpServletRequest request, HttpServletResponse response){
+            //在这里执行退出系统前需要清空的数据
+            Subject subject = SecurityUtils.getSubject();
+            //注销
+            subject.logout();
+            return "redirect:/login";
+        }
+
         @GetMapping("/main")
         public String main(ModelMap map) {
 //            setTitle(map, new TitleVo("首页", "首页", true,"欢迎进入", true, false));
-            return "movie/main";
+            return "member/main";
         }
 }
