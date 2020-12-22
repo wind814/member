@@ -197,23 +197,24 @@
                 formatter: function (value, row, index) {
                     var id = row.id;
                     var actions = [];
-                    actions.push('<button onclick="$.operate.edit(\'' + row.id + '\')" type="button" class="btn btn-primary">\n' +
-                        '<span class="entypo-shuffle"></span>&nbsp;&nbsp;修改\n' +
-                        '</button> ');
-                    actions.push('<button onclick="$.operate.remove(\'' + row.id + '\')" type="button" class="btn btn-info">\n' +
-                        '                        <span class="entypo-trash"></span>&nbsp;&nbsp;删除\n' +
-                        '                        </button>');
-                    actions.push('<button onclick="queryList(\'' + row.id + '\',\'ORDER\')" type="button" class="btn btn-primary">\n' +
-                        '                                    <span class="entypo-plus-squared"></span>&nbsp;&nbsp;查看订单记录\n' +
-                        '                                </button>');
-
-                    actions.push('<button onclick="queryList(\'' + row.id + '\',\'STORE\')" type="button" class="btn btn-primary">\n' +
-                        '                                    <span class="entypo-plus-squared"></span>&nbsp;&nbsp;查看充值记录\n' +
-                        '                                </button>');
-                    // actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                    // actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                    actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                    actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                    actions.push('<a class="btn btn-info btn-xs"  href="#" onclick="queryList(\'' + row.id + '\',\'ORDER\')"><i class="fa fa-list-ul"></i>查看订单记录</a> ');
+                    actions.push('<a class="btn btn-info btn-xs"  href="#" onclick="queryList(\'' + row.id + '\',\'STORE\')"><i class="fa fa-list-ul"></i>查看充值记录</a> ');
+                    // actions.push('<button onclick="$.operate.edit(\'' + row.id + '\')" type="button" class="btn btn-primary">\n' +
+                    //     '<span class="entypo-shuffle"></span>&nbsp;&nbsp;修改\n' +
+                    //     '</button> ');
+                    // actions.push('<button onclick="$.operate.remove(\'' + row.id + '\')" type="button" class="btn btn-info">\n' +
+                    //     '                        <span class="entypo-trash"></span>&nbsp;&nbsp;删除\n' +
+                    //     '                        </button>');
+                    // actions.push('<button onclick="queryList(\'' + row.id + '\',\'ORDER\')" type="button" class="btn btn-primary">\n' +
+                    //     '                                    <span class="entypo-plus-squared"></span>&nbsp;&nbsp;查看订单记录\n' +
+                    //     '                                </button>');
+                    //
+                    // actions.push('<button onclick="queryList(\'' + row.id + '\',\'STORE\')" type="button" class="btn btn-primary">\n' +
+                    //     '                                    <span class="entypo-plus-squared"></span>&nbsp;&nbsp;查看充值记录\n' +
+                    //     '                                </button>');
                     return actions.join('');
-                    //return '<a class="btn btn-xs btn-danger" onclick="delPermission(' + "'" + id + "'" + ')"><i class="fa fa-remove"></i>删除</a>';
                 }
             }]
     };

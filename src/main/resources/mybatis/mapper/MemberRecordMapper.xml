@@ -65,6 +65,7 @@
     ,m.telephone,mr.type
     from member_record mr left join member m on mr.member_id = m.id
     where mr.state = 'USE'
+    and m.state = 'USE'
     <if test="memberId != null and memberId != ''">
       and mr.`member_id` = #{memberId,jdbcType=BIGINT}
     </if>
