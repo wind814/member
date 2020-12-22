@@ -79,4 +79,11 @@
 		ORDER BY order_num  is null  ASC,order_num  ASC
  </select>
 
+  <select id="findAll" parameterType="String" resultMap="BaseResultMap">
+        select id, `name`, descripion, url, is_blank, pid, perms, `type`, icon, order_num,
+        visible from member_permission
+		ORDER BY order_num  is null  ASC,order_num  ASC
+ </select>
+
+
 </mapper>

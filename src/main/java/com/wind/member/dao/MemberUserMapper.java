@@ -18,4 +18,6 @@ public interface MemberUserMapper {
     int updateByPrimaryKey(MemberUser record);
 
     MemberUser findByUserName(String userName);
+
+    List<MemberUser> findAll(MemberUser record);
 }

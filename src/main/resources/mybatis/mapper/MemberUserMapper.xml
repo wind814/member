@@ -43,4 +43,9 @@
     where username = #{username,jdbcType=VARCHAR}
   </select>
 
+  <select id="findAll" resultMap="BaseResultMap" parameterType="com.wind.member.entity.MemberUser">
+    select id, username, `password`, nickname
+    from member_user order by id desc
+  </select>
+
 </mapper>
