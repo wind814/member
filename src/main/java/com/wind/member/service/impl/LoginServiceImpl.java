@@ -35,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
 
     public List<MemberPermission> getall(String userid){
         if(StringUtils.isEmpty(userid)) {
-            return  memberPermissionMapper.findByRoleIdAsc(userid);
+            return  memberPermissionMapper.findByRoleIdAsc();
         }
         return  memberPermissionMapper.findByAdminUserId(userid);
     }

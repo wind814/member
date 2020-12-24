@@ -18,4 +18,6 @@ public interface MemberRoleMapper {
     int updateByPrimaryKey(MemberRole record);
 
     List<MemberRole> findByUserId(String id);
+
+    List<MemberRole> findAll(MemberRole record);
 }

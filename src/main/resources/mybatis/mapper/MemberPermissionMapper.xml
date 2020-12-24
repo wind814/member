@@ -13,7 +13,7 @@
     <result column="icon" property="icon" jdbcType="VARCHAR" />
     <result column="order_num" property="orderNum" jdbcType="INTEGER" />
     <result column="visible" property="visible" jdbcType="INTEGER" />
-    <result column="childcount" jdbcType="INTEGER" property="childCount"/>
+    <result column="childCount" jdbcType="INTEGER" property="childCount"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from member_permission
@@ -63,6 +63,14 @@
     mp.visible
     from member_permission mp left join member_permission_role mpr on mp.id = mpr.permission_id
     where mpr.role_id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findByRoleIdAsc" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select mp.id, mp.`name`, mp.descripion, mp.url, mp.is_blank, mp.pid, mp.perms, mp.`type`, mp.icon, mp.order_num,
+    mp.visible,(select count(1) from member_permission where pid=mp.id) childCount
+    from member_permission mp
+--     left join member_permission_role mpr on mp.id = mpr.permission_id
+    order by mp.order_num asc
   </select>
 
   <select id="findByOrderNumAsc" resultMap="BaseResultMap" parameterType="java.lang.String">

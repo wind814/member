@@ -16,4 +16,6 @@ public interface MemberRoleUserMapper {
     List<MemberRoleUser> selectAll();
 
     int updateByPrimaryKey(MemberRoleUser record);
+
+    void deleteByUserId(String id);
 }

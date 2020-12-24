@@ -3,6 +3,16 @@ package com.wind.member.entity;
 import java.io.Serializable;
 
 public class MemberRoleUser implements Serializable {
+
+    public MemberRoleUser(){}
+
+    public MemberRoleUser(String id, String userId, String roleId) {
+        super();
+        this.id = id;
+        this.userId = userId;
+        this.roleId = roleId;
+    }
+
     private String id;
 
     private String userId;

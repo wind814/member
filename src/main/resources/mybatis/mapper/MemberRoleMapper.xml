@@ -10,11 +10,8 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.wind.member.entity.MemberRole" >
-    <selectKey resultType="java.lang.String" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into member_role (`name`)
-    values (#{name,jdbcType=VARCHAR})
+    insert into member_role (id,`name`)
+    values (#{id,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.wind.member.entity.MemberRole" >
     update member_role
@@ -37,5 +34,9 @@
     where mru.user_id = #{id,jdbcType=VARCHAR}
   </select>
 
-
+  <select id="findAll" resultMap="BaseResultMap" parameterType="com.wind.member.entity.MemberRole">
+    select id, `name`
+    from member_role
+    order by id desc
+  </select>
 </mapper>

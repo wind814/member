@@ -49,7 +49,7 @@
 								<label class="col-sm-3 control-label ">权限授权：</label>
 								<div class="col-sm-8">
 									
-									<div th:each="m : ${tsysRoleList}" class="checkbox checkbox-primary">
+									<div th:each="m : ${roleList}" class="checkbox checkbox-primary">
 										<input th:id="${m.id}" class="sqcheckbox" name="roles"  th:value="${m.id}"  type="checkbox">
 										<label th:for="${m.id}" th:text="${m.name}"></label>
 									</div>

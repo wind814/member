@@ -12,13 +12,8 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.wind.member.entity.MemberUser" >
-    <selectKey resultType="java.lang.String" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into member_user (username, `password`, nickname
-      )
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}
-      )
+    insert into member_user (id,username, `password`, nickname)
+    values (#{id,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.wind.member.entity.MemberUser" >
     update member_user

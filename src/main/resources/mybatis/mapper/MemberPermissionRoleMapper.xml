@@ -11,11 +11,8 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.wind.member.entity.MemberPermissionRole" >
-    <selectKey resultType="java.lang.String" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into member_permission_role (role_id, permission_id)
-    values (#{roleId,jdbcType=VARCHAR}, #{permissionId,jdbcType=VARCHAR})
+    insert into member_permission_role (id,role_id, permission_id)
+    values (#{id,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR}, #{permissionId,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.wind.member.entity.MemberPermissionRole" >
     update member_permission_role
@@ -32,5 +29,10 @@
     select id, role_id, permission_id
     from member_permission_role
   </select>
+
+  <delete id="deleteByRoleId" parameterType="java.lang.String" >
+    delete from member_permission_role
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </delete>
 
 </mapper>

@@ -17,4 +17,6 @@ public interface MemberPermissionRoleMapper {
 
     int updateByPrimaryKey(MemberPermissionRole record);
 
+    int deleteByRoleId(String roleId);
+
 }

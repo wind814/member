@@ -5,75 +5,77 @@
 $("#form-add").validate({
 	rules:{
 		username:{
-			required:true,
-			minlength: 2,
-			maxlength: 20,
-			remote: {
-                url: rootPath + "/UserController/checkLoginNameUnique",
-                type: "post",
-                dataType: "json",
-                dataFilter: function(data, type) {
-                    if (data == "0")
-                    	return true;
-                    else 
-                    	return false;
-                }
-            }
+			required:true
+			// ,
+			// minlength: 2,
+			// maxlength: 20,
+			// remote: {
+            //     url: rootPath + "/UserController/checkLoginNameUnique",
+            //     type: "post",
+            //     dataType: "json",
+            //     dataFilter: function(data, type) {
+            //         if (data == "0")
+            //         	return true;
+            //         else
+            //         	return false;
+            //     }
+            // }
 		},
-		deptName:{
+		nickname:{
 			required:true,
 		},
 		password:{
 			required:true,
 			minlength: 5,
 			maxlength: 20
-		},
-		email:{
-			required:true,
-            email:true,
-            remote: {
-                url:rootPath + "/UserController/checkEmailUnique",
-                type: "post",
-                dataType: "json",
-                data: {
-                    name: function () {
-                        return $.trim($("#email").val());
-                    }
-                },
-                dataFilter: function (data, type) {
-                    if (data == "0") return true;
-                    else return false;
-                }
-            }
-		},
-		phonenumber:{
-			required:true,
-			isPhone:true,
-            remote: {
-                url: rootPath + "/system/user/checkPhoneUnique",
-                type: "post",
-                dataType: "json",
-                data: {
-                    name: function () {
-                        return $.trim($("#phonenumber").val());
-                    }
-                },
-                dataFilter: function (data, type) {
-                    if (data == "0") return true;
-                    else return false;
-                }
-            }
-		},
+		}
+		// ,
+		// email:{
+		// 	required:true,
+        //     email:true,
+        //     remote: {
+        //         url:rootPath + "/UserController/checkEmailUnique",
+        //         type: "post",
+        //         dataType: "json",
+        //         data: {
+        //             name: function () {
+        //                 return $.trim($("#email").val());
+        //             }
+        //         },
+        //         dataFilter: function (data, type) {
+        //             if (data == "0") return true;
+        //             else return false;
+        //         }
+        //     }
+		// },
+		// phonenumber:{
+		// 	required:true,
+		// 	isPhone:true,
+        //     remote: {
+        //         url: rootPath + "/system/user/checkPhoneUnique",
+        //         type: "post",
+        //         dataType: "json",
+        //         data: {
+        //             name: function () {
+        //                 return $.trim($("#phonenumber").val());
+        //             }
+        //         },
+        //         dataFilter: function (data, type) {
+        //             if (data == "0") return true;
+        //             else return false;
+        //         }
+        //     }
+		// },
 	},
 	messages: {
         "username": {
-            remote: "用户已经存在"
+			required: "用户名不能为空"
         },
-		"email": {
-            remote: "Email已经存在"
+		"password": {
+			required: "密码不能为空"
         },
-		"phonenumber":{
-        	remote: "手机号码已经存在"
+		"nickname":{
+			required: "昵称不能为空"
 		}
     },
 	submitHandler:function(form){
@@ -89,7 +91,7 @@ function add() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : rootPath + "/UserController/add",
+		url : rootPath + "/v1/member/user/addMemberUser",
 		data : dataFormJson,
 		async : false,
 		error : function(request) {

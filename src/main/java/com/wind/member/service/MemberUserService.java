@@ -13,4 +13,7 @@ public interface MemberUserService {
 
     List<MemberUser> findAll(MemberUser user);
 
+    void deleteMemberUser(String id);
+
+    int addMemberUser(MemberUser user,List<String> roles);
 }

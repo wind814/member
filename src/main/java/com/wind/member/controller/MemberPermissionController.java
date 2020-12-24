@@ -2,9 +2,11 @@ package com.wind.member.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.wind.member.base.BaseController;
+import com.wind.member.domain.AjaxResult;
 import com.wind.member.entity.MemberPermission;
 import com.wind.member.entity.TableSplitResult;
 import com.wind.member.entity.Tablepar;
+import com.wind.member.service.LoginService;
 import com.wind.member.service.MemberPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class MemberPermissionController extends BaseController {
 
 	@Autowired
 	private MemberPermissionService memberPermissionService;
+
+	@Autowired
+	private LoginService loginService;
 	
 	@GetMapping("/view")
     public String view(ModelMap model)
@@ -34,6 +39,13 @@ public class MemberPermissionController extends BaseController {
 	public Object list(MemberPermission memberPermission){
 		return  memberPermissionService.findAll(memberPermission) ;
 	}
+
+	@GetMapping("/getTreePerm")
+	@ResponseBody
+	public AjaxResult getTreePerm(){
+		return AjaxResult.successData(200, loginService.getBootstrapTreePerm(""));
+	}
+
 
 //	/**
 //	 * 权限列表

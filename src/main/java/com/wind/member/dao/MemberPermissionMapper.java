@@ -20,7 +20,7 @@ public interface MemberPermissionMapper {
 
     List<MemberPermission> findByRoleId(String id);
 
-    List<MemberPermission> findByRoleIdAsc(String roleId);
+    List<MemberPermission> findByRoleIdAsc();
 
     List<MemberPermission> findByAdminUserId(String id);
 
