@@ -1,11 +1,8 @@
 package com.wind.member.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.wind.member.base.BaseController;
 import com.wind.member.domain.AjaxResult;
 import com.wind.member.entity.MemberPermission;
-import com.wind.member.entity.TableSplitResult;
-import com.wind.member.entity.Tablepar;
 import com.wind.member.service.LoginService;
 import com.wind.member.service.MemberPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;

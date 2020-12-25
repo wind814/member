@@ -3,8 +3,6 @@ package com.wind.member.controller;
 import com.github.pagehelper.PageInfo;
 import com.wind.member.base.BaseController;
 import com.wind.member.domain.AjaxResult;
-import com.wind.member.entity.MemberPermission;
-import com.wind.member.entity.MemberRecord;
 import com.wind.member.entity.MemberRole;
 import com.wind.member.entity.MemberUser;
 import com.wind.member.entity.TableSplitResult;

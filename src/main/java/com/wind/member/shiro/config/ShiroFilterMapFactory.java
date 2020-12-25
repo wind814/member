@@ -40,7 +40,7 @@ user:例如/admins/user/**=user没有参数表示必须存在用户，当登入�
 		//对所有用户认证
 		filterChainDefinitionMap.put("/static/**", "anon");
 		filterChainDefinitionMap.put("/vi/member/login/login", "anon");
-		filterChainDefinitionMap.put("/admin/logout", "logout");
+		filterChainDefinitionMap.put("/vi/member/login/logout", "logout");
 		//放验证码
 		filterChainDefinitionMap.put("/captcha/**", "anon");
 		// 释放 druid 监控画面
