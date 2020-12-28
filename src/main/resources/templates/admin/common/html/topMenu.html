@@ -34,69 +34,69 @@
 	        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
 	            <ul class="nav navbar-nav">
 		<!-- 消息通知栏 -->
-	                <li class="dropdown">
-	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;" class="icon-conversation"></i><div class="noft-red">23</div></a>
-	                    <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
-	                        <li>
-	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/1.jpg}">Jhon Doe <b>Just Now</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/women/1.jpg} ">Jeniffer <b>3 Min Ago</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/2.jpg}">Dave <b>2 Hours Ago</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/3.jpg}"><i>Keanu</i>  <b>1 Day Ago</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/4.jpg}"><i>Masashi</i>  <b>2 Mounth Ago</b>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <div>See All Messege</div>
-	                        </li>
-	                    </ul>
-	                </li>
+<!--	                <li class="dropdown">-->
+<!--	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;" class="icon-conversation"></i><div class="noft-red">23</div></a>-->
+<!--	                    <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">-->
+<!--	                        <li>-->
+<!--	                            <a href="#">-->
+<!--	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/1.jpg}">Jhon Doe <b>Just Now</b>-->
+<!--	                            </a>-->
+<!--	                        </li>-->
+<!--	                        <li class="divider"></li>-->
+<!--	                        <li>-->
+<!--	                            <a href="#">-->
+<!--	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/women/1.jpg} ">Jeniffer <b>3 Min Ago</b>-->
+<!--	                            </a>-->
+<!--	                        </li>-->
+<!--	                        <li class="divider"></li>-->
+<!--	                        <li>-->
+<!--	                            <a href="#">-->
+<!--	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/2.jpg}">Dave <b>2 Hours Ago</b>-->
+<!--	                            </a>-->
+<!--	                        </li>-->
+<!--	                        <li class="divider"></li>-->
+<!--	                        <li>-->
+<!--	                            <a href="#">-->
+<!--	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/3.jpg}"><i>Keanu</i>  <b>1 Day Ago</b>-->
+<!--	                            </a>-->
+<!--	                        </li>-->
+<!--	                        <li class="divider"></li>-->
+<!--	                        <li>-->
+<!--	                            <a href="#">-->
+<!--	                                <img alt="" class="img-msg img-circle" th:src="@{/static/admin/portraits/thumb/men/4.jpg}"><i>Masashi</i>  <b>2 Mounth Ago</b>-->
+<!--	                            </a>-->
+<!--	                        </li>-->
+<!--	                        <li class="divider"></li>-->
+<!--	                        <li>-->
+<!--	                            <div>See All Messege</div>-->
+<!--	                        </li>-->
+<!--	                    </ul>-->
+<!--	                </li>-->
 	                <!-- END消息通知栏 -->
 	                <!-- 右边警告图标通知栏 -->
-	                <li>
-	
-	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green" th:text="${session.notices.size()}">5</div></a>
-	                    <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
-	                        <th:block th:each="notice : ${session.notices}">
-								<li>
-									<!-- <a th:href="@{/SysNoticeController/viewinfo/}+${notice.id}"  target="mainFrame"> -->
-		                            <a th:href="@{/SysNoticeController/viewinfo/}+${notice.id}"  target="mainFrame">
-		                                <span style="background:#DF2135" class="noft-icon fontawesome-comments-alt"></span><i th:text="${notice.title}">From Station</i> <b>查看</b>
-		                            </a>
-	                        	</li>
-	                        	<li class="divider"></li>
-							</th:block>
-	                        <li>
-	                           <a th:href="@{/SysNoticeController/viewUser}" target="mainFrame"> <div>查看所有公告</div></a>
-	                        </li>
-	                    </ul>
-	                </li>
+<!--	                <li>-->
+<!--	-->
+<!--	                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green" th:text="${session.notices.size()}">5</div></a>-->
+<!--	                    <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">-->
+<!--	                        <th:block th:each="notice : ${session.notices}">-->
+<!--								<li>-->
+<!--									&lt;!&ndash; <a th:href="@{/SysNoticeController/viewinfo/}+${notice.id}"  target="mainFrame"> &ndash;&gt;-->
+<!--		                            <a th:href="@{/SysNoticeController/viewinfo/}+${notice.id}"  target="mainFrame">-->
+<!--		                                <span style="background:#DF2135" class="noft-icon fontawesome-comments-alt"></span><i th:text="${notice.title}">From Station</i> <b>查看</b>-->
+<!--		                            </a>-->
+<!--	                        	</li>-->
+<!--	                        	<li class="divider"></li>-->
+<!--							</th:block>-->
+<!--	                        <li>-->
+<!--	                           <a th:href="@{/SysNoticeController/viewUser}" target="mainFrame"> <div>查看所有公告</div></a>-->
+<!--	                        </li>-->
+<!--	                    </ul>-->
+<!--	                </li>-->
 	                <!--END 右边警告图标通知栏 -->
 	                
 	                <!-- 右边帮助图标通知栏  -->
-	                <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help" style="font-size:20px;" class="icon-help tooltitle"></i></a>
-	                </li>
+<!--	                <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help" style="font-size:20px;" class="icon-help tooltitle"></i></a>-->
+<!--	                </li>-->
 		<!-- END右边帮助图标通知栏  -->
 	            </ul>
 	            <!-- 右侧顶部 日期 时间  天气预报  div-->
@@ -197,11 +197,11 @@
 	                <!--END 背景设置 -->
 	                
 	                <!-- 顶部右侧隐藏按钮 -->
-	                <li class="hidden-xs">
-	                    <a class="toggle-left" href="#">
-	                        <span style="font-size:20px;" class="entypo-list-add"></span>
-	                    </a>
-	                </li>
+<!--	                <li class="hidden-xs">-->
+<!--	                    <a class="toggle-left" href="#">-->
+<!--	                        <span style="font-size:20px;" class="entypo-list-add"></span>-->
+<!--	                    </a>-->
+<!--	                </li>-->
 	                <!-- END顶部右侧隐藏按钮 -->
 	            </ul>
 	            <!-- end 右侧顶部 头像设置-->
