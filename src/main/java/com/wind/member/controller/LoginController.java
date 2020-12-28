@@ -3,6 +3,7 @@ package com.wind.member.controller;
 import com.wind.member.BootstrapTree;
 import com.wind.member.config.V2Config;
 import com.wind.member.domain.AjaxResult;
+import com.wind.member.entity.MemberUser;
 import com.wind.member.service.LoginService;
 import com.wind.member.shiro.util.ShiroUtils;
 import com.wind.member.shiro.util.StringUtils;
@@ -73,9 +74,9 @@ public class LoginController {
 
         @PostMapping("login")
         @ResponseBody
-        public AjaxResult login(String username,String password,HttpServletRequest request,String code) {
+        public AjaxResult login(MemberUser memberUser,HttpServletRequest request, String code) {
 
-            Boolean yz=false;
+            Boolean yz;
             if(V2Config.getRollVerification()) {//滚动验证
                 yz=true;
             }else {//图片验证
@@ -87,7 +88,7 @@ public class LoginController {
                 Subject currentUser = SecurityUtils.getSubject();
                 if(!currentUser.isAuthenticated()) {
                     //是否验证通过
-                    UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+                    UsernamePasswordToken token = new UsernamePasswordToken(memberUser.getUsername(), memberUser.getPassword());
                     try {
                         //存入用户
                         currentUser.login(token);
@@ -99,20 +100,20 @@ public class LoginController {
                             return AjaxResult.error(500, "未知账户");
                         }
                     } catch (UnknownAccountException uae) {
-                        logger.info("对用户[" + username + "]进行登录验证..验证未通过,未知账户");
+                        logger.info("对用户[" + memberUser.getUsername() + "]进行登录验证..验证未通过,未知账户");
                         return AjaxResult.error(500, "未知账户");
                     } catch (IncorrectCredentialsException ice) {
-                        logger.info("对用户[" + username + "]进行登录验证..验证未通过,错误的凭证");
+                        logger.info("对用户[" + memberUser.getUsername() + "]进行登录验证..验证未通过,错误的凭证");
                         return AjaxResult.error(500, "用户名或密码不正确");
                     } catch (LockedAccountException lae) {
-                        logger.info("对用户[" + username + "]进行登录验证..验证未通过,账户已锁定");
+                        logger.info("对用户[" + memberUser.getUsername() + "]进行登录验证..验证未通过,账户已锁定");
                         return AjaxResult.error(500, "账户已锁定");
                     } catch (ExcessiveAttemptsException eae) {
-                        logger.info("对用户[" + username + "]进行登录验证..验证未通过,错误次数过多");
+                        logger.info("对用户[" + memberUser.getUsername() + "]进行登录验证..验证未通过,错误次数过多");
                         return AjaxResult.error(500, "用户名或密码错误次数过多");
                     } catch (AuthenticationException ae) {
                         //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
-                        logger.info("对用户[" + username + "]进行登录验证..验证未通过,堆栈轨迹如下");
+                        logger.info("对用户[" + memberUser.getUsername() + "]进行登录验证..验证未通过,堆栈轨迹如下");
                         ae.printStackTrace();
                         return AjaxResult.error(500, "用户名或密码不正确");
                     }
@@ -130,7 +131,7 @@ public class LoginController {
         }
 
 //        @ApiOperation(value="退出登陆",notes="退出登陆")
-        @GetMapping("/LoginOut")
+        @GetMapping("LoginOut")
         public String LoginOut(HttpServletRequest request, HttpServletResponse response){
             //在这里执行退出系统前需要清空的数据
             Subject subject = SecurityUtils.getSubject();

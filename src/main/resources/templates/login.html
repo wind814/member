@@ -249,7 +249,6 @@ $(document).ready(function(){
 									$.modal.alertError("系统错误");
 								},
 								success : function(data) {
-									// location.href = "/v1/member/login/index";
 									if(data.code==200){
 										 location.href = "/v1/member/login/index";
 									}else{
@@ -258,11 +257,10 @@ $(document).ready(function(){
 											//关闭后的操作
 										});
 									}
-									
+
 								}
 							});
 						}
-						
 					}
 				});
 			},
@@ -351,34 +349,30 @@ $(document).ready(function(){
 						return  '/static/login/img/1.jpg';
 					},
 					onSuccess: function () {
+						var dataFormJson=$("#loginForm").serialize();
+						$.ajax({
+							cache : true,
+							type : "POST",
+							url : "/v1/member/login/login",
+							data : dataFormJson,
+							async : false,
+							error : function(request) {
+								$.modal.alertError("系统错误");
+							},
+							success : function(data) {
+								if(data.code==200){
+									location.href = '/v1/member/login/index';
+								}else{
+									$('#myModal').modal('hide');
+									$('#captcha').sliderCaptcha('reset');
+									v2.showdd().init();
+									layer.msg(data.msg, function(){
+										//关闭后的操作
+									});
+								}
 
-						alert(1);
-						location.href = '/v1/member/login/index';
-
-						// var dataFormJson=$("#loginForm").serialize();
-						// $.ajax({
-						// 	cache : true,
-						// 	type : "POST",
-						// 	url : "/v1/member/login/login",
-						// 	data : dataFormJson,
-						// 	async : false,
-						// 	error : function(request) {
-						// 		$.modal.alertError("系统错误");
-						// 	},
-						// 	success : function(data) {
-						// 		if(data.code==200){
-						// 			location.href = '/v1/member/login/index';
-						// 		}else{
-						// 			$('#myModal').modal('hide');
-						// 			$('#captcha').sliderCaptcha('reset');
-						// 			v2.showdd().init();
-						// 			layer.msg(data.msg, function(){
-						// 				//关闭后的操作
-						// 			});
-						// 		}
-						//
-						// 	}
-						// });
+							}
+						});
 					},
 					onFail: function () {
 
