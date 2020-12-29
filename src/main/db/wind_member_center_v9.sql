@@ -51,6 +51,8 @@ INSERT INTO `member` VALUES ('11', '王海楠', '453.23', '18210451410', '2020-1
 DROP TABLE IF EXISTS `member_operations`;
 CREATE TABLE `member_operations` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
   `role_id` bigint(20) NOT NULL,
   `member_id` bigint(20) DEFAULT NULL,
   `member_record_id` bigint(20) DEFAULT NULL,
@@ -58,26 +60,7 @@ CREATE TABLE `member_operations` (
   `description` varchar(1000) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of member_operations
--- ----------------------------
-INSERT INTO `member_operations` VALUES ('1', '1', '1', null, 'memberAdd', '{\"createAt\":1608041545093,\"id\":3,\"money\":512.34,\"name\":\"王海楠\",\"telephone\":\"18210451410\"}', '2020-12-15 14:12:28');
-INSERT INTO `member_operations` VALUES ('2', '1', '1', null, 'memberAdd', '{\"createAt\":1608041555184,\"id\":4,\"money\":512.34,\"name\":\"王海楠\",\"telephone\":\"18210451410\"}', '2020-12-15 14:12:58');
-INSERT INTO `member_operations` VALUES ('3', '1', '1', null, 'memberAdd', '{\"createAt\":1608041687460,\"id\":5,\"money\":512.34,\"name\":\"王海楠\",\"telephone\":\"18210451410\"}', '2020-12-15 14:14:58');
-INSERT INTO `member_operations` VALUES ('4', '1', '1', null, 'memberAdd', '{\"createAt\":1608042005964,\"id\":6,\"money\":512.34,\"name\":\"王海楠\",\"telephone\":\"18210451410\"}', '2020-12-15 14:20:33');
-INSERT INTO `member_operations` VALUES ('5', '1', '1', null, 'memberAdd', '{\"createAt\":1608042395735,\"id\":7,\"money\":512.34,\"name\":\"王海楠\",\"telephone\":\"18210451410\"}', '2020-12-15 14:26:57');
-INSERT INTO `member_operations` VALUES ('6', '1', '1', null, 'memberAdd', '{\"createAt\":1608042476230,\"id\":8,\"money\":512.34,\"name\":\"王海楠\",\"telephone\":\"18210451410\"}', '2020-12-15 14:28:07');
-INSERT INTO `member_operations` VALUES ('7', '1', '9', null, 'memberAdd', '{\"createAt\":1608042947393,\"createTime\":\"2020-12-15 22:35:47\",\"id\":9,\"money\":512.34,\"name\":\"王海楠\",\"telephone\":\"18210451410\"}', '2020-12-15 14:35:48');
-INSERT INTO `member_operations` VALUES ('8', '1', '10', null, 'memberAdd', '{\"createTime\":\"2020-12-15 22:37:43\",\"id\":10,\"money\":512.34,\"name\":\"王海楠\",\"telephone\":\"18210451410\"}', '2020-12-15 14:37:43');
-INSERT INTO `member_operations` VALUES ('9', '1', '9', null, 'memberDelete', '{\"createAt\":1608042947000,\"createTime\":\"2020-12-15 22:35:47\",\"id\":9,\"money\":512.34,\"name\":\"王海楠\",\"state\":\"\",\"telephone\":\"18210451410\"}', '2020-12-16 07:05:06');
-INSERT INTO `member_operations` VALUES ('10', '1', '10', null, 'memberUpdate', '{\"new\":{\"createAt\":1608043063000,\"createTime\":\"2020-12-15 22:37:43\",\"id\":10,\"money\":200.00,\"name\":\"王海楠wind\",\"state\":\"USE\",\"telephone\":\"18210451410\"},\"old\":{\"createAt\":1608043063000,\"createTime\":\"2020-12-15 22:37:43\",\"id\":10,\"money\":512.34,\"name\":\"王海楠\",\"state\":\"USE\",\"telephone\":\"18210451410\"}}', '2020-12-16 07:17:08');
-INSERT INTO `member_operations` VALUES ('11', '1', '1', null, 'memberRecordAdd', '{\"createTime\":\"2020-12-16 16:14:45\",\"id\":1,\"memberId\":10,\"memberName\":\"王海楠wind\",\"money\":243.23,\"state\":\"USE\"}', '2020-12-16 08:14:45');
-INSERT INTO `member_operations` VALUES ('12', '1', '10', '1', 'memberRecordDelete', '{\"createAt\":1608106485000,\"id\":1,\"memberId\":10,\"memberName\":\"王海楠wind\",\"money\":243.23,\"state\":\"USE\"}', '2020-12-16 08:17:08');
-INSERT INTO `member_operations` VALUES ('13', '1', '10', '1', 'memberRecordDelete', '{\"createAt\":1608106485000,\"id\":1,\"memberId\":10,\"memberName\":\"王海楠wind\",\"money\":243.23,\"state\":\"USE\"}', '2020-12-16 08:21:56');
-INSERT INTO `member_operations` VALUES ('14', '1', '10', '2', 'memberRecordAdd', '{\"createTime\":\"2020-12-16 16:24:40\",\"id\":2,\"memberId\":10,\"memberName\":\"王海楠wind\",\"money\":1243.23,\"state\":\"USE\"}', '2020-12-16 08:24:40');
-INSERT INTO `member_operations` VALUES ('15', '1', '10', '2', 'memberRecordDelete', '{\"createAt\":1608107080000,\"id\":2,\"memberId\":10,\"memberName\":\"王海楠wind\",\"money\":1243.23,\"state\":\"USE\"}', '2020-12-16 08:25:17');
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for `member_permission`

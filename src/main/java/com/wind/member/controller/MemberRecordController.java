@@ -90,8 +90,13 @@ public class MemberRecordController {
 
         @RequestMapping(value = "deleteMemberRecord" ,method = RequestMethod.POST)
         @ResponseBody
-        public void deleteMember(Long id){
-                memberRecordService.deleteMemberRecord(id);
+        public AjaxResult deleteMember(Long ids){
+                try{
+                        memberRecordService.deleteMemberRecord(ids);
+                }catch (Exception e){
+                        return AjaxResult.error(e.getMessage());
+                }
+                return AjaxResult.success();
         }
 
 

@@ -9,6 +9,8 @@
     <result column="operation" jdbcType="VARCHAR" property="operation" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from member_operations
@@ -18,16 +20,18 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into member_operations (role_id, member_id, member_record_id, 
+    insert into member_operations (user_id,username,role_id, member_id, member_record_id,
       `operation`, description, create_at
       )
-    values (#{roleId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{memberRecordId,jdbcType=BIGINT}, 
+    values (#{userId,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},#{roleId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{memberRecordId,jdbcType=BIGINT},
       #{operation,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.wind.member.entity.MemberOperations">
     update member_operations
-    set role_id = #{roleId,jdbcType=BIGINT},
+    set user_id = #{userId,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=BIGINT},
       member_id = #{memberId,jdbcType=BIGINT},
       member_record_id = #{memberRecordId,jdbcType=BIGINT},
       `operation` = #{operation,jdbcType=VARCHAR},
@@ -36,12 +40,12 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select id, role_id, member_id, member_record_id, `operation`, description, create_at
+    select id, user_id,username,role_id, member_id, member_record_id, `operation`, description, create_at
     from member_operations
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, role_id, member_id, member_record_id, `operation`, description, create_at
+    select id, user_id,username,role_id, member_id, member_record_id, `operation`, description, create_at
     from member_operations
   </select>
 

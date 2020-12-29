@@ -7,9 +7,11 @@ public class MemberOperations implements Serializable {
 
     public MemberOperations(){}
 
-    public MemberOperations(Long roleId,Long memberId,Long memberRecordId
+    public MemberOperations(String userId,String username,Long roleId,Long memberId,Long memberRecordId
             ,String operation,String description,Date createAt){
 
+        this.userId=userId;
+        this.username=username;
         this.roleId=roleId;
         this.memberId=memberId;
         this.memberRecordId=memberRecordId;
@@ -33,6 +35,26 @@ public class MemberOperations implements Serializable {
     private String description;
 
     private Date createAt;
+
+    private String userId;
+
+    private String username;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     private static final long serialVersionUID = 1L;
 

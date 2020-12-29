@@ -8,10 +8,12 @@ import com.wind.member.dao.MemberMapper;
 import com.wind.member.dao.MemberOperationsMapper;
 import com.wind.member.entity.Member;
 import com.wind.member.entity.MemberOperations;
+import com.wind.member.entity.MemberUser;
 import com.wind.member.entity.Tablepar;
 import com.wind.member.exception.MemberIsNullException;
 import com.wind.member.exception.MemberTelephoneExistException;
 import com.wind.member.service.MemberService;
+import com.wind.member.shiro.util.ShiroUtils;
 import com.wind.member.util.EnumUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +58,10 @@ public class MemberServiceImpl implements MemberService {
 
             member.setCreateAt(null);
             member.setUpdateAt(null);
-            MemberOperations memberOperations = new MemberOperations(1L,member.getId(),null
+
+            MemberUser memberUser = ShiroUtils.getUser();
+            MemberOperations memberOperations = new MemberOperations(memberUser.getId(),memberUser.getNickname()
+                    ,1L,member.getId(),null
                     , EnumUtil.memberAdd,JSON.toJSONString(member),new Date());
             memberOperationsMapper.insert(memberOperations);
 
@@ -81,7 +86,10 @@ public class MemberServiceImpl implements MemberService {
 
             member.setUpdateAt(null);
             member.setCreateAt(null);
-            MemberOperations memberOperations = new MemberOperations(1L,member.getId(),null
+
+            MemberUser memberUser = ShiroUtils.getUser();
+            MemberOperations memberOperations = new MemberOperations(memberUser.getId(),memberUser.getNickname()
+                    ,1L,member.getId(),null
                     , EnumUtil.memberDelete,JSON.toJSONString(member),new Date());
             memberOperationsMapper.insert(memberOperations);
 
@@ -118,7 +126,9 @@ public class MemberServiceImpl implements MemberService {
             newMember.setCreateAt(null);
             memberMap.put("new",newMember);
 
-            MemberOperations memberOperations = new MemberOperations(1L,member.getId(),null
+            MemberUser memberUser = ShiroUtils.getUser();
+            MemberOperations memberOperations = new MemberOperations(memberUser.getId(),memberUser.getNickname(),
+                    1L,member.getId(),null
                     , EnumUtil.memberUpdate,JSON.toJSONString(memberMap),new Date());
             memberOperationsMapper.insert(memberOperations);
 

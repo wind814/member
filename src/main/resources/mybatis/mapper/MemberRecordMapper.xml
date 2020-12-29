@@ -70,7 +70,7 @@
       and mr.`member_id` = #{memberId,jdbcType=BIGINT}
     </if>
     <if test="memberName != null and memberName != ''">
-      and mr.`member_name` = #{memberName,jdbcType=VARCHAR}
+      and mr.`member_name` like CONCAT('%',#{memberName,jdbcType=VARCHAR},'%')
     </if>
     <if test="telephone != null and telephone != ''">
       and m.`telephone` = #{telephone,jdbcType=VARCHAR}

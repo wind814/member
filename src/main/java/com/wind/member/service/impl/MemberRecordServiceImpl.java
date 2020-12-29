@@ -9,6 +9,7 @@ import com.wind.member.dao.MemberRecordMapper;
 import com.wind.member.entity.Member;
 import com.wind.member.entity.MemberOperations;
 import com.wind.member.entity.MemberRecord;
+import com.wind.member.entity.MemberUser;
 import com.wind.member.entity.Tablepar;
 import com.wind.member.exception.IsMinusException;
 import com.wind.member.exception.MemberIsNullException;
@@ -16,6 +17,7 @@ import com.wind.member.exception.MemberRecordIsNullException;
 import com.wind.member.exception.NotEnoughMoneyException;
 import com.wind.member.service.MemberRecordService;
 import com.wind.member.service.MemberService;
+import com.wind.member.shiro.util.ShiroUtils;
 import com.wind.member.util.EnumUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,7 +88,10 @@ public class MemberRecordServiceImpl implements MemberRecordService {
         record = memberRecordMapper.selectByPrimaryKey(record.getId());
         record.setCreateAt(null);
         record.setTelephone(member.getTelephone());
-        MemberOperations memberOperations = new MemberOperations(1L,record.getMemberId(),record.getId()
+
+        MemberUser memberUser = ShiroUtils.getUser();
+        MemberOperations memberOperations = new MemberOperations(memberUser.getId(),memberUser.getNickname(),
+                1L,record.getMemberId(),record.getId()
                 , EnumUtil.memberRecordOrder.equals(record.getType())?
                 EnumUtil.memberRecordAddOrder:EnumUtil.memberRecordAddStore
                 ,JSON.toJSONString(record),new Date());
@@ -110,7 +115,8 @@ public class MemberRecordServiceImpl implements MemberRecordService {
             memberRecordMapper.updateStateById(id,EnumUtil.stateDelete);
 
             record.setCreateAt(null);
-            MemberOperations memberOperations = new MemberOperations(1L,record.getMemberId(),record.getId()
+            MemberUser memberUser = ShiroUtils.getUser();
+            MemberOperations memberOperations = new MemberOperations(memberUser.getId(),memberUser.getNickname(),1L,record.getMemberId(),record.getId()
                     , EnumUtil.memberRecordDelete,JSON.toJSONString(record),new Date());
             memberOperationsMapper.insert(memberOperations);
 

@@ -79,7 +79,7 @@
     from member
     where state = 'USE'
     <if test="name != null and name != ''">
-      and `name` = #{name,jdbcType=VARCHAR}
+      and `name` like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
     </if>
     <if test="telephone != null and telephone != ''">
       and `telephone` = #{telephone,jdbcType=VARCHAR}
