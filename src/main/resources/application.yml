@@ -15,7 +15,7 @@ spring:
     static-path-pattern: /static/**
       #  serverTimezone=UTC 不加会因为时区问题报错
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/wind_movie?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/wind_member_center?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
     # password root
     password: cpaIVG3A8yKLpVcShz8IySfSUrcCRwOQZR352tv2Zmh2Efs1v8UzlUVaZx/v3nyfBPufxQnvPVlAVFIm1Kh7pQ==
